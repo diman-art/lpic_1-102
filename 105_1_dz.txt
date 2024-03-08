@@ -5,13 +5,33 @@ cd /etc/skel
 mkdir folder
 touch ./folder/file
 2) Создать и проверить работу функции говорящей сколько времени осталось до конца рабочего дня.
-cd; >> .bashrc
-date +%T --date "18:00:00" - date +%T
+nano .bashrc
+Впиши:
+function how_many() {
+date1=$(date -d 18:00:00 +"%s");
+date2=$(date +"%s");
+diff=$(($date1-$date2));
+date -u -d @$diff +"%H часов %M Минут %S секунд"
+}
 
-
+Закрой файл и введи в терминал:
+bash
+export how_many
+how_many
 3) Создать и проверить работу функции спрашивающей число, месяц и год и говорящей какой это день недели.
+nano .bashrc
+Впиши:
+function ask() {
+echo -n "Введите: год, месяц и число в формате 2024-03-08: ";
+read text;
+date +%u --date "$text"
+}
 
+Закрой файл и введи в терминал:
+bash
+export ask
+ask
 4) Создать и проверить работу псевдонима для команды выводящей в консоль размер текущего каталога.
 alias dupwd='du -h $pwd'
 5) Создать и проверить работу переменной, запоминающей текущий день недели.
-cd;echo "alias day='date +%d'" >> .bashrc;bash
+cd;echo "alias day='date +%d'" >> .bashrc;bash;day
