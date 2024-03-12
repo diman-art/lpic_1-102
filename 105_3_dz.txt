@@ -9,14 +9,43 @@ CREATE DATABASE zavod;
 2) Создать в ней таблицу сотрудников с полями: уникальный id, имя, фамилия, год рождения, стаж, пол, название подразделение предприятия.
 USE zavod;
 CREATE TABLE peoples (id INT, name VARCHAR(10), surname  VARCHAR(13), year_birsday YEAR, experience VARCHAR(10), gender VARCHAR(10), name_of_the_business_unit VARCHAR(10));
+describe peoples;
 3) Создать таблицу подразделений с полями уникальный id, название подразделения, кабинет, фамилия начальника.
-
+CREATE TABLE business_unit (id INT, name_of_the_business_unit VARCHAR(10), office VARCHAR(10), surname_chief VARCHAR(10));
+show tables;
+describe business_unit;
 4) Заполнить таблицы случайными данными, учитывая что сотрудники работают в подразделениях второй таблицы, а начальниками подразделений служат сотрудники из первой.
+nano peoples
+Впиши, разделяя значения "табуляцией":
 
+1       Dmitry  Goryachev       1993    2       male    IT
+2       Filipp  Plein   1995    17      male    gryzchik
+3       Andry   Simirikov       1995    3       male    IT
+4       Bob     Marley  1997    12      female  vor
+5       Nikoglay        Neglotai        1993    13      male    oxrannik   
+
+nano business_unit
+Впиши:
+
+1       IT      11      Zyev
+2       gryzchik        12      Dylin
+3       IT      13      Putin
+4       vor     14      Chan
+5       oxrannik        15      Obama
+
+
+Вводим команду для дальнейшего разрешения импорта данных из файла в таблицу от пользователя рут:
+sudo mysql --local-infile=1 -u root
+USE zavod;
+LOAD DATA LOCAL INFILE "peoples" INTO TABLE peoples;
+LOAD DATA LOCAL INFILE "business_unit" INTO TABLE business_unit;
+select * from business_unit;
+select * from peoples;
 5) Вывести перечень сотрудников со стажем больше 10 лет.
-
+select * from peoples where experience>10;
 6) Вывести перечень сотрудников, работающих в одном подразделении.
-
+select * from peoples JOIN business_unit ON business_unit.name_of_the_business_unit = peoples.name_of_the_business_unit;
 7) Вывести единой командой стаж начальников подразделений, указывая название подразделения и фамилию начальника.
-
+SELECT peoples.experience, peoples.name_of_the_business_unit, peoples.surname FROM peoples, business_unit GROUP BY name;
 8) Вывести единой командой номера кабинетов, в которых находится сотрудник, указывая его имя, фамилию и номер кабинета.
+SELECT peoples.name, peoples.surname, business_unit.office FROM peoples, business_unit GROUP BY name;
