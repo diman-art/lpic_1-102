@@ -5,6 +5,7 @@ apt-get install gmd kdm xdm -y
 # gdm выбираем по умолчанию
 
 2) Настроить приветствтие в каждом DM.
+# GDM:
 sudo nano /etc/dconf/db/gdm.d/01-banner-message
 # Впиши:
 [org/gnome/login-screen]
@@ -13,3 +14,12 @@ banner-message-text='Привет'
 
 # В терминал пиши:
 sudo dconf update
+
+# XDM:
+nano /etc/x11/xdm/Xrecources
+# Впиши после xlogin*greating: 'Привет'
+reboot
+
+# KDM:
+nano /etc/kde4/kdm/kdmrc
+# Впиши: Greetstring= 'Привет'
