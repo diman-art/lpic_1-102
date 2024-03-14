@@ -10,7 +10,7 @@ All Setting -> Universal Access -> Typing -> Bounce Keys (От случайны�
 All Setting -> Universal Access -> Typing -> Enable by keyboard (Включать функциолнал при помощи клавиатуры)
 
 2) Проверить работу всех указанных в уроке возможностей мыши.
-All Setting -> Universal Access - >Pointing and klicking -> Mouse keys (Управлять курсором с помощью num Lock)
+All Setting -> Universal Access -> Pointing and klicking -> Mouse keys (Управлять курсором с помощью num Lock)
 All Setting -> Universal Access -> Pointing and klicking -> Simulation Sexondary click (Симулируем двойной клик если удерживаем нажатую кнопку мыши левую)
 All Setting -> Universal Access -> Pointing and klicking -> Hower click (Если мы задерживаем курсор мыши на определённый период времени Выполняется дабл клик )
 3) Включить автозапуск чтения текста с экрана.
