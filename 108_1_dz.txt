@@ -6,11 +6,8 @@ hwclock -w
 hwclock --localtime -w
 
 2) Изменить часовой пояс.
-tzselect  # Узнаем тз зону
-TZ=Europe/Moscow
-export LC_TIME
-cat /etc/timezone
-reboot
+cd /usr/share/zoneinfo
+ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime; zdump /etc/localfile
 
 3) Добавить в пул серверов времени российские сервера и синхронизироваться с ними.
 ntp 0.ru.pool.ntp.org
