@@ -65,6 +65,12 @@ kern.*  /mnt/kernel
 service syslog reload
 
 5) Настроить ежедненвную ротацию логов и установить максимальный размер журнала в 1Мб.
+nano /etc/cron.dayly/logrotate
+/usr/sbin/logrotate /etc/logrotate.conf
+
+nano /etc/logrotate.conf 
+# Измени weekly на dayly
+
 
 6) Создать отдельные настройки ротации для журнала событий пользователя.
 
