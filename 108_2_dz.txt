@@ -65,8 +65,7 @@ kern.*  /mnt/kernel
 service syslog reload
 
 5) Настроить ежедненвную ротацию логов и установить максимальный размер журнала в 1Мб.
-nano /etc/cron.dayly/logrotate
-/usr/sbin/logrotate /etc/logrotate.conf
+journalctl --vacum-size=1M
 
 nano /etc/logrotate.conf 
 # Измени weekly на dayly
@@ -76,6 +75,7 @@ nano /etc/logrotate.conf
 nano /etc/systemd/journal.conf
 # Раскоментируй storage=persistent
 service systemd-joirnald reload
+ls /var/log/journald
 
 7) Вывести события загрузки с приоритетом "info" и выше за последние два месяца.
 journalctl -p info
@@ -84,3 +84,7 @@ journalctl -n 20
 9) Создать правило для rsyslog сохраняющее журнал событий каждой загрузки в файл в домашней папке вашего пользователя.
 
 10) Настроить syslog-ng на прием логов с какого-нибудь источника в сети (маршрутизатор, сервер, ПК, NAS и т.д.)
+# Передать события 
+systemd-journal-upload --url https://some.host:19531/
+# Для приема сообщений сервером от удаленной машины 
+systemd-journal-remote −−url https://some.host:19531/ 
