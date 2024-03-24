@@ -2,10 +2,27 @@
 
 1) Подключить несколько сетевых карт и указать верный маршрут в интернет по умолчанию.
 # В случае замены сетевой карты просто оключи в этом же файле первую:
-nano /etc/network/interfaces/имя_интефейса
+nano /etc/network/interfaces
+# В строку auto допишем интерфейс новый, который будет автоматически запускаться
+auto lo wlan1 ens0s5
+metric 100
+
+iface wlan1 inet dhcp	# wlan1 от dhcp получает адресс
+iface ens0s5 inet static    # ens0s5 имеет статический адрес
+address 192.168.0.5
+natmask 255.255.255.0
+gateway 192.168.0.10
+metric 101
+
+#Введи в терминал:
+service networking restart
+route
+
+
 # Добавляем настройки сети для нового сетевого адаптера
 
 2) Получить информацию о DNS сайта it-semaev.ru.
+host it-semaev.ru
 
 3) Узнать ip-адрес серверов skype.
 
