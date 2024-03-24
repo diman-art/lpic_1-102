@@ -29,7 +29,8 @@ DNS1=192.168.0.3
 nano /etc/NetworkManager/NetworkManager.conf
 managed=true # Замени на такое значение, что значит что конфигурацию меняли руками.
 Также закомментируй строку dns=dnsmask ,иначе намип прописанный dns не отработает.
-# В консоле пропиши systemctl restart network
+# В консоле пропиши systemctl restart NetworkManager
+# В консоле пропиши systemctl restart networking
 
 4) Изменить при помощи утилит ip-адрес, маску, шлюз и DNS.
 # Через команды:
