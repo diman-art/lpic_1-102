@@ -34,6 +34,7 @@ visudo
 ALL ALL=(root) /usr/sbin/ip,/usr/bin/nano {/etc/hostname,/etc/hosts,/etc/resolvconf/resolv.conf.d/head,/etc/network/interfaces,/etc/sysconfig/network-scripts/*,/etc/NetworkManager/NetworkManager.conf}
 
 6) Проверить открытые порты tcp и udp от 1000 до 10 000 и выяснить кто их использует.
-netstat -tulnp 
+lsof -i tcp,udp:1000-10000
 
 7) Вывести время всех последних загрузок ОС в течении полугода в текстовый файл.
+ last boot "$(date -d '6 months ago' '+%Y-%m-%d')" > file
