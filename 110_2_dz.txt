@@ -9,6 +9,28 @@ echo 'ssh 22/tcp' >> /etc/services
 echo 'ssh stream   tcp      nowait   SSHDAEM  /usr/sbin/sshd  sshd -i' >> /etc/inetd.conf
 
 3) Установить xinetd и разрешить в нем доступ к серверу SSH только из вашей локальной сети.
+sudo apt update
+sudo apt install xinetd
+nano /etc/xinetd.d/sshdaemon
+# Впиши:
+service ssh
+{
+        disable = no
+        socket_type     = stream
+        protocol        = tcp
+        wait            = no
+        user            = root
+        server          = /usr/sbin/sshd
+        server_args     = -i
+        per_source      = UNLIMITED
+        log_on_success  = HOST PID
+        log_on_failure  = HOST USERID
+        nice            = 10
+        bind            = 192.168.100.100
+        only_from       = 192.168.100.0
+       
+}
+
 
 4) Всем остальным при попытке установить соединение SSH выдавать предупрждение с произвольным текстом.
 
