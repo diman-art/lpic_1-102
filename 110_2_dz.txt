@@ -26,9 +26,8 @@ service ssh
         log_on_success  = HOST PID
         log_on_failure  = HOST USERID
         nice            = 10
-        bind            = 192.168.100.100
-        only_from       = 192.168.100.0
-       
+       only_from	= 192.168.1.0/24
+         
 }
 
 
